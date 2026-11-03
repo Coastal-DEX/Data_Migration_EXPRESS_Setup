@@ -64,7 +64,7 @@ Complete these in order. Each step depends on the one before it.
    choosing the **IDO-NPC** demo type. EXPRESS learners are Coastal consultants with PLC access,
    so you are eligible.
 
-   > **Your org expires in 30 days.** So does every Salesforce trial org. Plan the exercise
+   > **Your org expires 31 days after you request it.** Plan the exercise
    > inside that window, and if it lapses mid-programme, request a new one and re-run this
    > setup from the top. There is no way to extend it.
    >
@@ -355,6 +355,6 @@ Every `SETUP INCOMPLETE` message below is also what `CoastieEdTrainingDataLoader
   short delta with four Completed jobs means rows were rejected silently. Report the exact
   shortfall to your instructor; it is a package problem, not something you can fix in the org.
 - **StandardValueSet warning on deploy**: deploying `OpportunityStage`/`LeadStatus` replaces the full org value sets. Intended for disposable training orgs only. See step 7.
-- **My org expired part-way through**: all trial and demo orgs expire in 30 days. Request a new one at step 1 and re-run this setup. Nothing carries over.
+- **My org expired part-way through**: your demo org expires 31 days after you request it. Request a new one at step 1 and re-run this setup. Nothing carries over.
 - **The seed did not appear to finish**: check **Setup > Apex Jobs**. The seed runs as four chained jobs with Apex Class `CoastieEdTrainingDataLoader`; all four should show Completed. Other jobs in the list are your org's own. If a seed job shows Failed, open it for the error. **Four Completed jobs is not proof of success** — run step 10c.
 - **I did not get the summary email**: check your spam/junk folder first, it commonly lands there. Beyond that, this is common and it is not a problem. Apex email delivery depends on your org's deliverability settings and the loader does not report a failed send. Use step 10c instead.
