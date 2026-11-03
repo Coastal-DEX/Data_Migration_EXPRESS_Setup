@@ -32,7 +32,7 @@ You run it at step 10, once before the seed and once after.
 **The "before" reading exists once per org.** Once you have seeded you cannot recover it, so
 do not skip ahead to `run()`.
 
-### Running anonymous Apex (you will do this three times)
+### Running anonymous Apex (you will do this four times)
 
 **You need no local tooling for this program.** No git clone, no VS Code, no Salesforce CLI.
 Everything runs in the browser.
@@ -163,9 +163,9 @@ Complete these in order. Each step depends on the one before it.
    > and it cannot see records that were already here. A green result means "the settings are
    > on", not "you are ready". The delta check at step 10 is what proves the seed worked.
 
-   The next step is **one-shot per org**: the seed refuses to run twice, and to start over you
-   need a fresh training org. Confirm this step passes first, and confirm you have your
-   `BEFORE` census from the section above.
+   The seed at step 10b is **one-shot per org**: it refuses to run twice, and to start over you
+   need a fresh training org. Confirm this step passes first. Then take your `BEFORE` count at
+   step 10a before you seed.
 
 10. **Take the "before" count, seed, then check the deltas.** Three executions, in order.
 
@@ -188,7 +188,22 @@ Complete these in order. Each step depends on the one before it.
 
     The loader re-runs the same checks before it starts, so a step missed after step 9 still stops
     it here rather than seeding a half-configured org.
-    Progress is tracked under **Setup > Apex Jobs** (the seed runs as a chain of six jobs).
+    Progress is tracked under **Setup > Apex Jobs**. The seed runs as a chain of **four** jobs,
+    one after another. Find them by **Apex Class** `CoastieEdTrainingDataLoader` and **Job Type**
+    `Queueable`. Other jobs can appear in the list at the same time. Your org starts those itself
+    when records are inserted, and they are not part of the seed. The seed is finished when all
+    four `CoastieEdTrainingDataLoader` rows show **Status** `Completed`. Refresh the page to update it.
+
+    | Job | Loads |
+    |---|---|
+    | 1 | Account |
+    | 2 | Contact, AccountContactRelation, Lead |
+    | 3 | Opportunity |
+    | 4 | GiftTransaction, Deliverable__c |
+
+    If a `CoastieEdTrainingDataLoader` row shows `Failed`, open it for the error and report it to
+    your facilitator. If fewer than four rows appear and none is still `Queued` or `Processing`,
+    the chain stopped early: report that too.
 
     > **You may also receive a summary email, and it is a bonus rather than a check.** The
     > loader tries to email the running user a per-object summary — `Account: success=1200,
@@ -198,15 +213,15 @@ Complete these in order. Each step depends on the one before it.
     > your spam/junk folder before assuming it did not arrive.** **No email means nothing at
     > all — it does not mean success.** Step 10c is the verification.
 
-    **10c. After count.** Once all six jobs show Completed, paste the census script in again
+    **10c. After count.** Once all four jobs show Completed, paste the census script in again
     and make two edits **in the Execute Anonymous window** before running it: replace the
     `String BEFORE = '';` line with the line you copied at step 10a verbatim, then change `String MODE = 'BEFORE` to `String MODE = 'AFTER'`.
     Execute. It prints before, after, delta and **PASS** or **FAIL** for each object.
 
-    > **Six Completed jobs does NOT mean six successful jobs.** The loader inserts with partial
+    > **Four Completed jobs does NOT mean four successful jobs.** The loader inserts with partial
     > success enabled by design, so a job that discards rows still finishes and still reports
     > `Completed`. This has happened: an earlier build of the seed silently dropped 436 of 1,744
-    > gift transactions while all six jobs reported success. **Step 10c is the actual
+    > gift transactions while all four jobs reported success. **Step 10c is the actual
     > verification. Do not skip it.**
 
 ## Deploy
@@ -337,9 +352,9 @@ Every `SETUP INCOMPLETE` message below is also what `CoastieEdTrainingDataLoader
 - **GiftTransaction step reports SKIPPED or errors**: Fundraising is not enabled (step 3) or the Fundraising Admin permission set group is not assigned (step 4).
 - **GiftTransaction delta is short but every job reported Completed**: this is the partial-success
   behaviour described at step 10. The loader does not fail a job on individual row errors, so a
-  short delta with six Completed jobs means rows were rejected silently. Report the exact
+  short delta with four Completed jobs means rows were rejected silently. Report the exact
   shortfall to your instructor; it is a package problem, not something you can fix in the org.
 - **StandardValueSet warning on deploy**: deploying `OpportunityStage`/`LeadStatus` replaces the full org value sets. Intended for disposable training orgs only. See step 7.
 - **My org expired part-way through**: all trial and demo orgs expire in 30 days. Request a new one at step 1 and re-run this setup. Nothing carries over.
-- **The seed did not appear to finish**: check **Setup > Apex Jobs**. The seed runs as six chained jobs; all six should show Completed. If a job shows Failed, open it for the error. **Six Completed jobs is not proof of success** — run step 10c.
+- **The seed did not appear to finish**: check **Setup > Apex Jobs**. The seed runs as four chained jobs with Apex Class `CoastieEdTrainingDataLoader`; all four should show Completed. Other jobs in the list are your org's own. If a seed job shows Failed, open it for the error. **Four Completed jobs is not proof of success** — run step 10c.
 - **I did not get the summary email**: check your spam/junk folder first, it commonly lands there. Beyond that, this is common and it is not a problem. Apex email delivery depends on your org's deliverability settings and the loader does not report a failed send. Use step 10c instead.
