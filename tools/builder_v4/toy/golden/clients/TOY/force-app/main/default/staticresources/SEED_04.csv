@@ -1,0 +1,3 @@
+Subject,Account.Name,Asset.SerialNumber,Status,Reason,Owner.Username,CreatedDate
+Pump 1 noisy,North Works,SN-100,Closed,Other,a.one@toy.example,2024-05-01T10:00:00.000Z
+Valve leak,South Works,SN-200,New,,a.two@toy.example,2024-06-02T11:30:00.000Z

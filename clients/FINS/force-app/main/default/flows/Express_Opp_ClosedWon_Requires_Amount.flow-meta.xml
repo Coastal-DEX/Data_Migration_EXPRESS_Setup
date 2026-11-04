@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <customErrors>
+        <name>Raise_Error</name>
+        <label>Raise Error</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <customErrorMessages>
+            <errorMessage>Closed Won requires Amount</errorMessage>
+            <fieldSelection>Amount</fieldSelection>
+            <isFieldError>true</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <decisions>
+        <name>Should_Block</name>
+        <label>Should Block</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Block</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>fmlBlock</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Raise_Error</targetReference>
+            </connector>
+            <label>Block</label>
+        </rules>
+    </decisions>
+    <description>EXPRESS enforcement A08 (AUTO08_Flow_Opp_ClosedWon). Generated from AUTO_SPEC; do not hand-edit.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>fmlBlock</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(NOT({!$Setup.Migration_Settings__c.Bypass_Automation__c}), AND(ISPICKVAL({!$Record.StageName}, "Closed Won"), OR(ISBLANK({!$Record.Amount}), {!$Record.Amount} &lt;= 0)))</expression>
+    </formulas>
+    <interviewLabel>Express_Opp_ClosedWon_Requires_Amount {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Express_Opp_ClosedWon_Requires_Amount</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Should_Block</targetReference>
+        </connector>
+        <object>Opportunity</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

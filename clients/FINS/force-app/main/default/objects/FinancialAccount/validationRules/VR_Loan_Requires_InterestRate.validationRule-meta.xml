@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_Loan_Requires_InterestRate</fullName>
+    <active>true</active>
+    <description>EXPRESS enforcement A04c (AUTO04_FA_Validation_Rules). Generated from AUTO_SPEC.</description>
+    <errorConditionFormula>AND(NOT($Setup.Migration_Settings__c.Bypass_Automation__c), AND(ISPICKVAL(Type, "Loan"), ISBLANK(InterestRate)))</errorConditionFormula>
+    <errorDisplayField>InterestRate</errorDisplayField>
+    <errorMessage>A Loan requires an Interest Rate.</errorMessage>
+</ValidationRule>

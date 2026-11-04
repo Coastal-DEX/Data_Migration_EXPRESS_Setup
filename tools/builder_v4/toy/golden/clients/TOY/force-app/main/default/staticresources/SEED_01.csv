@@ -1,0 +1,6 @@
+RecordType.DeveloperName,Name,AccountNumber,Owner.Username,BillingCountryCode,Industry,Tier__c,Description
+Org_Unit,North Works,,a.one@toy.example,US,Energy,Gold,"Has a comma, and a ""quote"""
+Org_Unit,South Works,,a.two@toy.example,CA,Retail,Silver,
+Org_Unit,East Works,,a.one@toy.example,US,,Gold,
+Branch,,BR-001,a.two@toy.example,US,Energy,Bronze,
+Branch,,BR-002,a.one@toy.example,CA,Retail,Silver,

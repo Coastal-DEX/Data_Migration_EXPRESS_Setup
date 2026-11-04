@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legacy_System_Source__c</fullName>
+    <description>FR-01 lineage</description>
+    <label>Legacy System Source</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Acquired_Org</fullName>
+                <default>false</default>
+                <label>Acquired_Org</label>
+            </value>
+            <value>
+                <fullName>CFG_Core</fullName>
+                <default>false</default>
+                <label>CFG_Core</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

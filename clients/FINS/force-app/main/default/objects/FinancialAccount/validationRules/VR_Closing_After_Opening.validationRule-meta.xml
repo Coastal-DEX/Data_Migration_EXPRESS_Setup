@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_Closing_After_Opening</fullName>
+    <active>true</active>
+    <description>EXPRESS enforcement A04a (AUTO04_FA_Validation_Rules). Generated from AUTO_SPEC.</description>
+    <errorConditionFormula>AND(NOT($Setup.Migration_Settings__c.Bypass_Automation__c), AND(NOT(ISBLANK(ClosingDate)), NOT(ISBLANK(OpeningDate)), ClosingDate &lt; OpeningDate))</errorConditionFormula>
+    <errorDisplayField>ClosingDate</errorDisplayField>
+    <errorMessage>Closing Date cannot be before Opening Date.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,6 @@
+Subject,What.Type,What.Key,ActivityDate,Status,Owner.Username
+Call,Account,North Works,2024-07-01,Completed,a.one@toy.example
+Follow up,Account,BR-002,2024-07-02,Not Started,a.two@toy.example
+Inspect,Asset,SN-101,2024-07-03,Not Started,a.one@toy.example
+Close out,Case,Pump 1 noisy,2024-07-04,Completed,a.two@toy.example
+Note,,,2024-07-05,Completed,a.one@toy.example

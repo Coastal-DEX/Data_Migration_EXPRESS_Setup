@@ -1,0 +1,402 @@
+{
+ "api_version": "66.0",
+ "census": [
+  {
+   "expected": 5,
+   "filter": null,
+   "object": "Account"
+  },
+  {
+   "expected": 2,
+   "filter": null,
+   "object": "Account",
+   "record_type": "Branch"
+  },
+  {
+   "expected": 3,
+   "filter": null,
+   "object": "Account",
+   "record_type": "Org_Unit"
+  },
+  {
+   "expected": 3,
+   "filter": null,
+   "object": "Asset"
+  },
+  {
+   "expected": 2,
+   "filter": null,
+   "object": "Case"
+  },
+  {
+   "expected": 5,
+   "filter": null,
+   "object": "Task"
+  }
+ ],
+ "client": "TOY",
+ "contract_version": "1.0.1",
+ "file1_content_md5": "42dc0fada5256d10dfb97bc59159dd01",
+ "keys": [
+  {
+   "key_field": "Name",
+   "object": "Account",
+   "record_type": "Org_Unit"
+  },
+  {
+   "key_field": "AccountNumber",
+   "object": "Account",
+   "record_type": "Branch"
+  },
+  {
+   "key_field": "SerialNumber",
+   "object": "Asset",
+   "record_type": null
+  },
+  {
+   "key_field": "Subject",
+   "object": "Case",
+   "record_type": null
+  }
+ ],
+ "objects": [
+  "Account",
+  "Asset",
+  "Case",
+  "Task"
+ ],
+ "owner_usernames": 2,
+ "repo_fields": [
+  {
+   "field": "Tier__c",
+   "object": "Account",
+   "populated": "SEED"
+  },
+  {
+   "field": "Old_System_Key__c",
+   "object": "Account",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Seed_Owner_Username__c",
+   "object": "Account",
+   "populated": "LOADER"
+  },
+  {
+   "field": "Seed_Owner_Username__c",
+   "object": "Asset",
+   "populated": "LOADER"
+  },
+  {
+   "field": "Seed_Owner_Username__c",
+   "object": "Case",
+   "populated": "LOADER"
+  },
+  {
+   "field": "Seed_Owner_Username__c",
+   "object": "Task",
+   "populated": "LOADER"
+  }
+ ],
+ "requires": {
+  "already_seeded": {
+   "key_field": "Name",
+   "keys": [
+    "North Works",
+    "South Works",
+    "East Works"
+   ],
+   "object": "Account",
+   "record_type": "Org_Unit"
+  },
+  "audit_fields": {
+   "Case": [
+    "CreatedDate"
+   ]
+  },
+  "contacts_to_multiple_accounts": false,
+  "objects": [
+   "Account",
+   "Asset",
+   "Case",
+   "Task"
+  ],
+  "person_record_types": [],
+  "record_types": {
+   "Account": [
+    "Branch",
+    "Org_Unit"
+   ]
+  },
+  "repo_fields": [
+   "Account.Tier__c",
+   "Account.Old_System_Key__c",
+   "Account.Seed_Owner_Username__c",
+   "Asset.Seed_Owner_Username__c",
+   "Case.Seed_Owner_Username__c",
+   "Task.Seed_Owner_Username__c"
+  ],
+  "state_country_fields": [
+   "Account.BillingCountryCode"
+  ]
+ },
+ "steps": [
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "RecordTypeId",
+     "header": "RecordType.DeveloperName",
+     "kind": "RECORDTYPE"
+    },
+    {
+     "field": "Name",
+     "header": "Name",
+     "kind": "FIELD"
+    },
+    {
+     "field": "AccountNumber",
+     "header": "AccountNumber",
+     "kind": "FIELD"
+    },
+    {
+     "field": "OwnerId",
+     "header": "Owner.Username",
+     "kind": "OWNER"
+    },
+    {
+     "field": "BillingCountryCode",
+     "header": "BillingCountryCode",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Industry",
+     "header": "Industry",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Tier__c",
+     "header": "Tier__c",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Description",
+     "header": "Description",
+     "kind": "FIELD"
+    }
+   ],
+   "n": 1,
+   "name": "S01_Account_insert",
+   "object": "Account",
+   "op": "insert",
+   "owner_field": "Seed_Owner_Username__c",
+   "resources": [
+    "SEED_01"
+   ],
+   "rows": 5
+  },
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "RecordTypeId",
+     "header": "RecordType.DeveloperName",
+     "kind": "RECORDTYPE"
+    },
+    {
+     "field": "Name",
+     "header": "Name",
+     "kind": "FIELD"
+    },
+    {
+     "field": "AccountNumber",
+     "header": "AccountNumber",
+     "kind": "FIELD"
+    },
+    {
+     "field": "ParentId",
+     "header": "Parent.Name",
+     "key_field": "Name",
+     "kind": "LOOKUP",
+     "rel": "Parent",
+     "self_ref": true,
+     "target": "Account"
+    }
+   ],
+   "key_headers": [
+    "RecordType.DeveloperName",
+    "Name",
+    "AccountNumber"
+   ],
+   "n": 2,
+   "name": "S02_Account_update",
+   "object": "Account",
+   "op": "update",
+   "resources": [
+    "SEED_02"
+   ],
+   "rows": 2
+  },
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "Name",
+     "header": "Name",
+     "kind": "FIELD"
+    },
+    {
+     "field": "SerialNumber",
+     "header": "SerialNumber",
+     "kind": "FIELD"
+    },
+    {
+     "field": "AccountId",
+     "header": "Account.Name",
+     "key_field": "Name",
+     "kind": "LOOKUP",
+     "rel": "Account",
+     "target": "Account"
+    },
+    {
+     "field": "AccountId",
+     "header": "Account.AccountNumber",
+     "key_field": "AccountNumber",
+     "kind": "LOOKUP",
+     "rel": "Account",
+     "target": "Account"
+    },
+    {
+     "field": "InstallDate",
+     "header": "InstallDate",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Price",
+     "header": "Price",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Status",
+     "header": "Status",
+     "kind": "FIELD"
+    },
+    {
+     "field": "OwnerId",
+     "header": "Owner.Username",
+     "kind": "OWNER"
+    }
+   ],
+   "n": 3,
+   "name": "S03_Asset_insert",
+   "object": "Asset",
+   "op": "insert",
+   "owner_field": "Seed_Owner_Username__c",
+   "resources": [
+    "SEED_03"
+   ],
+   "rows": 3
+  },
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "Subject",
+     "header": "Subject",
+     "kind": "FIELD"
+    },
+    {
+     "field": "AccountId",
+     "header": "Account.Name",
+     "key_field": "Name",
+     "kind": "LOOKUP",
+     "rel": "Account",
+     "target": "Account"
+    },
+    {
+     "field": "AssetId",
+     "header": "Asset.SerialNumber",
+     "key_field": "SerialNumber",
+     "kind": "LOOKUP",
+     "rel": "Asset",
+     "target": "Asset"
+    },
+    {
+     "field": "Status",
+     "header": "Status",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Reason",
+     "header": "Reason",
+     "kind": "FIELD"
+    },
+    {
+     "field": "OwnerId",
+     "header": "Owner.Username",
+     "kind": "OWNER"
+    },
+    {
+     "field": "CreatedDate",
+     "header": "CreatedDate",
+     "kind": "AUDIT"
+    }
+   ],
+   "n": 4,
+   "name": "S04_Case_insert",
+   "object": "Case",
+   "op": "insert",
+   "owner_field": "Seed_Owner_Username__c",
+   "resources": [
+    "SEED_04"
+   ],
+   "rows": 2
+  },
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "Subject",
+     "header": "Subject",
+     "kind": "FIELD"
+    },
+    {
+     "field": "WhatId",
+     "header": "What.Type",
+     "kind": "POLY_TYPE",
+     "rel": "What"
+    },
+    {
+     "field": "WhatId",
+     "header": "What.Key",
+     "kind": "POLY_KEY",
+     "rel": "What"
+    },
+    {
+     "field": "ActivityDate",
+     "header": "ActivityDate",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Status",
+     "header": "Status",
+     "kind": "FIELD"
+    },
+    {
+     "field": "OwnerId",
+     "header": "Owner.Username",
+     "kind": "OWNER"
+    }
+   ],
+   "n": 5,
+   "name": "S05_Task_insert",
+   "object": "Task",
+   "op": "insert",
+   "owner_field": "Seed_Owner_Username__c",
+   "resources": [
+    "SEED_05"
+   ],
+   "rows": 5
+  }
+ ]
+}

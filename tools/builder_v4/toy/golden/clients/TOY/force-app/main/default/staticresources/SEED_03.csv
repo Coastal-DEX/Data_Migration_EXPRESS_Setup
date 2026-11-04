@@ -1,0 +1,4 @@
+Name,SerialNumber,Account.Name,Account.AccountNumber,InstallDate,Price,Status,Owner.Username
+Pump 1,SN-100,North Works,,2024-03-01,1200.5,Installed,a.one@toy.example
+Pump 2,SN-101,,BR-001,2024-04-15,990,Installed,a.two@toy.example
+Valve 1,SN-200,South Works,,2023-12-31,45,Obsolete,a.one@toy.example

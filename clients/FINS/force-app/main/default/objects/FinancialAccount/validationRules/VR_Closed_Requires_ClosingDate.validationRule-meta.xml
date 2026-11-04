@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_Closed_Requires_ClosingDate</fullName>
+    <active>true</active>
+    <description>EXPRESS enforcement A04b (AUTO04_FA_Validation_Rules). Generated from AUTO_SPEC.</description>
+    <errorConditionFormula>AND(NOT($Setup.Migration_Settings__c.Bypass_Automation__c), AND(ISPICKVAL(Status, "Closed"), ISBLANK(ClosingDate)))</errorConditionFormula>
+    <errorDisplayField>ClosingDate</errorDisplayField>
+    <errorMessage>A Closed financial account requires a Closing Date.</errorMessage>
+</ValidationRule>

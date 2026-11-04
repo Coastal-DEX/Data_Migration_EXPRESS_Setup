@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Toy_Closed_Needs_Reason</fullName>
+    <active>true</active>
+    <description>EXPRESS enforcement T1 (AUTO_T1_Case_Rule). Generated from AUTO_SPEC.</description>
+    <errorConditionFormula>AND(NOT($Setup.Migration_Settings__c.Bypass_Automation__c), AND(ISPICKVAL(Status, "Closed"), ISBLANK(TEXT(Reason))))</errorConditionFormula>
+    <errorDisplayField>Reason</errorDisplayField>
+    <errorMessage>Closed needs a reason</errorMessage>
+</ValidationRule>

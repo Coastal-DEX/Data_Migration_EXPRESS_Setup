@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Bypass_Automation__c is set true by ExpressSeed.run() while the seed loads, so the enforcement layer stays dormant for clean seed data, then false again so learner loads hit it.</description>
+    <label>Migration Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

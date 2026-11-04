@@ -1,0 +1,1419 @@
+{
+ "api_version": "66.0",
+ "census": [
+  {
+   "expected": 25,
+   "filter": null,
+   "object": "Product2"
+  },
+  {
+   "expected": 2200,
+   "filter": null,
+   "object": "Account"
+  },
+  {
+   "expected": 1200,
+   "filter": null,
+   "object": "Account",
+   "record_type": "Business_Account"
+  },
+  {
+   "expected": 1000,
+   "filter": null,
+   "object": "Account",
+   "record_type": "PersonAccount"
+  },
+  {
+   "expected": 1800,
+   "filter": "IsPersonAccount = false",
+   "object": "Contact"
+  },
+  {
+   "expected": 800,
+   "filter": "IsDirect = false",
+   "object": "AccountContactRelation"
+  },
+  {
+   "expected": 900,
+   "filter": null,
+   "object": "Lead"
+  },
+  {
+   "expected": 4160,
+   "filter": null,
+   "object": "FinancialAccount"
+  },
+  {
+   "expected": 4652,
+   "filter": null,
+   "object": "FinancialAccountParty"
+  },
+  {
+   "expected": 1200,
+   "filter": null,
+   "object": "Opportunity"
+  },
+  {
+   "expected": 1500,
+   "filter": null,
+   "object": "Case"
+  },
+  {
+   "expected": 3300,
+   "filter": null,
+   "object": "Task"
+  }
+ ],
+ "client": "FINS",
+ "contract_version": "1.0.1",
+ "file1_content_md5": "232e4657f281195640c649a9cc32af15",
+ "keys": [
+  {
+   "key_field": "ProductCode",
+   "object": "Product2",
+   "record_type": null
+  },
+  {
+   "key_field": "Name",
+   "object": "Account",
+   "record_type": "Business_Account"
+  },
+  {
+   "key_field": "PersonEmail",
+   "object": "Account",
+   "record_type": "PersonAccount"
+  },
+  {
+   "key_field": "Email",
+   "object": "Contact",
+   "record_type": null
+  },
+  {
+   "key_field": "Email",
+   "object": "Lead",
+   "record_type": null
+  },
+  {
+   "key_field": "FinancialAccountNumber",
+   "object": "FinancialAccount",
+   "record_type": null
+  },
+  {
+   "key_field": "Name",
+   "object": "Opportunity",
+   "record_type": null
+  },
+  {
+   "key_field": "Subject",
+   "object": "Case",
+   "record_type": null
+  }
+ ],
+ "objects": [
+  "Product2",
+  "Account",
+  "Contact",
+  "AccountContactRelation",
+  "Lead",
+  "FinancialAccount",
+  "FinancialAccountParty",
+  "Opportunity",
+  "Case",
+  "Task"
+ ],
+ "owner_usernames": 15,
+ "repo_fields": [
+  {
+   "field": "Segment__c",
+   "object": "Account",
+   "populated": "SEED"
+  },
+  {
+   "field": "KYC_Status__c",
+   "object": "Account",
+   "populated": "SEED"
+  },
+  {
+   "field": "AML_Review_Date__c",
+   "object": "Account",
+   "populated": "SEED"
+  },
+  {
+   "field": "Risk_Weighted_Assets__c",
+   "object": "Account",
+   "populated": "SEED"
+  },
+  {
+   "field": "Tax_ID__c",
+   "object": "Account",
+   "populated": "SEED"
+  },
+  {
+   "field": "Secondary_Email__c",
+   "object": "Contact",
+   "populated": "SEED"
+  },
+  {
+   "field": "Legacy_Owner_Name__c",
+   "object": "Task",
+   "populated": "SEED"
+  },
+  {
+   "field": "Legacy_System_Source__c",
+   "object": "Account",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Legacy_Source_ID__c",
+   "object": "Account",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Migration_Batch_ID__c",
+   "object": "Account",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Legacy_System_Source__c",
+   "object": "Contact",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Legacy_Source_ID__c",
+   "object": "Contact",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Migration_Batch_ID__c",
+   "object": "Contact",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Legacy_System_Source__c",
+   "object": "AccountContactRelation",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Legacy_Source_ID__c",
+   "object": "AccountContactRelation",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Migration_Batch_ID__c",
+   "object": "AccountContactRelation",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Legacy_System_Source__c",
+   "object": "Lead",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Legacy_Source_ID__c",
+   "object": "Lead",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Migration_Batch_ID__c",
+   "object": "Lead",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Legacy_System_Source__c",
+   "object": "FinancialAccount",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Legacy_Source_ID__c",
+   "object": "FinancialAccount",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Migration_Batch_ID__c",
+   "object": "FinancialAccount",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Legacy_System_Source__c",
+   "object": "FinancialAccountParty",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Legacy_Source_ID__c",
+   "object": "FinancialAccountParty",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Migration_Batch_ID__c",
+   "object": "FinancialAccountParty",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Legacy_System_Source__c",
+   "object": "Opportunity",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Legacy_Source_ID__c",
+   "object": "Opportunity",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Migration_Batch_ID__c",
+   "object": "Opportunity",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Legacy_System_Source__c",
+   "object": "Case",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Legacy_Source_ID__c",
+   "object": "Case",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Migration_Batch_ID__c",
+   "object": "Case",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Legacy_System_Source__c",
+   "object": "Task",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Legacy_Source_ID__c",
+   "object": "Task",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Migration_Batch_ID__c",
+   "object": "Task",
+   "populated": "LEARNER"
+  },
+  {
+   "field": "Seed_Owner_Username__c",
+   "object": "Account",
+   "populated": "LOADER"
+  },
+  {
+   "field": "Seed_Owner_Username__c",
+   "object": "Contact",
+   "populated": "LOADER"
+  },
+  {
+   "field": "Seed_Owner_Username__c",
+   "object": "Lead",
+   "populated": "LOADER"
+  },
+  {
+   "field": "Seed_Owner_Username__c",
+   "object": "FinancialAccount",
+   "populated": "LOADER"
+  },
+  {
+   "field": "Seed_Owner_Username__c",
+   "object": "Opportunity",
+   "populated": "LOADER"
+  },
+  {
+   "field": "Seed_Owner_Username__c",
+   "object": "Case",
+   "populated": "LOADER"
+  },
+  {
+   "field": "Seed_Owner_Username__c",
+   "object": "Task",
+   "populated": "LOADER"
+  }
+ ],
+ "requires": {
+  "already_seeded": {
+   "key_field": "ProductCode",
+   "keys": [
+    "PRD-1001",
+    "PRD-1002",
+    "PRD-1003",
+    "PRD-1004",
+    "PRD-1005",
+    "PRD-1006",
+    "PRD-1007",
+    "PRD-1008",
+    "PRD-1009",
+    "PRD-1010"
+   ],
+   "object": "Product2",
+   "record_type": null
+  },
+  "audit_fields": {
+   "Case": [
+    "ClosedDate",
+    "CreatedDate"
+   ],
+   "Task": [
+    "CreatedDate"
+   ]
+  },
+  "contacts_to_multiple_accounts": true,
+  "objects": [
+   "Product2",
+   "Account",
+   "Contact",
+   "AccountContactRelation",
+   "Lead",
+   "FinancialAccount",
+   "FinancialAccountParty",
+   "Opportunity",
+   "Case",
+   "Task"
+  ],
+  "person_record_types": [
+   "Account.PersonAccount"
+  ],
+  "record_types": {
+   "Account": [
+    "Business_Account",
+    "PersonAccount"
+   ]
+  },
+  "repo_fields": [
+   "Account.Segment__c",
+   "Account.KYC_Status__c",
+   "Account.AML_Review_Date__c",
+   "Account.Risk_Weighted_Assets__c",
+   "Account.Tax_ID__c",
+   "Contact.Secondary_Email__c",
+   "Task.Legacy_Owner_Name__c",
+   "Account.Legacy_System_Source__c",
+   "Account.Legacy_Source_ID__c",
+   "Account.Migration_Batch_ID__c",
+   "Contact.Legacy_System_Source__c",
+   "Contact.Legacy_Source_ID__c",
+   "Contact.Migration_Batch_ID__c",
+   "AccountContactRelation.Legacy_System_Source__c",
+   "AccountContactRelation.Legacy_Source_ID__c",
+   "AccountContactRelation.Migration_Batch_ID__c",
+   "Lead.Legacy_System_Source__c",
+   "Lead.Legacy_Source_ID__c",
+   "Lead.Migration_Batch_ID__c",
+   "FinancialAccount.Legacy_System_Source__c",
+   "FinancialAccount.Legacy_Source_ID__c",
+   "FinancialAccount.Migration_Batch_ID__c",
+   "FinancialAccountParty.Legacy_System_Source__c",
+   "FinancialAccountParty.Legacy_Source_ID__c",
+   "FinancialAccountParty.Migration_Batch_ID__c",
+   "Opportunity.Legacy_System_Source__c",
+   "Opportunity.Legacy_Source_ID__c",
+   "Opportunity.Migration_Batch_ID__c",
+   "Case.Legacy_System_Source__c",
+   "Case.Legacy_Source_ID__c",
+   "Case.Migration_Batch_ID__c",
+   "Task.Legacy_System_Source__c",
+   "Task.Legacy_Source_ID__c",
+   "Task.Migration_Batch_ID__c",
+   "Account.Seed_Owner_Username__c",
+   "Contact.Seed_Owner_Username__c",
+   "Lead.Seed_Owner_Username__c",
+   "FinancialAccount.Seed_Owner_Username__c",
+   "Opportunity.Seed_Owner_Username__c",
+   "Case.Seed_Owner_Username__c",
+   "Task.Seed_Owner_Username__c"
+  ],
+  "state_country_fields": [
+   "Account.BillingCountryCode",
+   "Account.BillingStateCode",
+   "Account.PersonMailingCountryCode",
+   "Account.PersonMailingStateCode",
+   "Contact.MailingCountryCode",
+   "Contact.MailingStateCode",
+   "Lead.CountryCode",
+   "Lead.StateCode"
+  ]
+ },
+ "steps": [
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "ProductCode",
+     "header": "ProductCode",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Name",
+     "header": "Name",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Family",
+     "header": "Family",
+     "kind": "FIELD"
+    },
+    {
+     "field": "IsActive",
+     "header": "IsActive",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Description",
+     "header": "Description",
+     "kind": "FIELD"
+    }
+   ],
+   "n": 1,
+   "name": "S01_Product2_insert",
+   "object": "Product2",
+   "op": "insert",
+   "resources": [
+    "SEED_01"
+   ],
+   "rows": 25
+  },
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "RecordTypeId",
+     "header": "RecordType.DeveloperName",
+     "kind": "RECORDTYPE"
+    },
+    {
+     "field": "Name",
+     "header": "Name",
+     "kind": "FIELD"
+    },
+    {
+     "field": "FirstName",
+     "header": "FirstName",
+     "kind": "FIELD"
+    },
+    {
+     "field": "LastName",
+     "header": "LastName",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Salutation",
+     "header": "Salutation",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Type",
+     "header": "Type",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Industry",
+     "header": "Industry",
+     "kind": "FIELD"
+    },
+    {
+     "field": "AccountSource",
+     "header": "AccountSource",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Phone",
+     "header": "Phone",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Website",
+     "header": "Website",
+     "kind": "FIELD"
+    },
+    {
+     "field": "AnnualRevenue",
+     "header": "AnnualRevenue",
+     "kind": "FIELD"
+    },
+    {
+     "field": "NumberOfEmployees",
+     "header": "NumberOfEmployees",
+     "kind": "FIELD"
+    },
+    {
+     "field": "OwnerId",
+     "header": "Owner.Username",
+     "kind": "OWNER"
+    },
+    {
+     "field": "SourceSystemIdentifier",
+     "header": "SourceSystemIdentifier",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Segment__c",
+     "header": "Segment__c",
+     "kind": "FIELD"
+    },
+    {
+     "field": "KYC_Status__c",
+     "header": "KYC_Status__c",
+     "kind": "FIELD"
+    },
+    {
+     "field": "AML_Review_Date__c",
+     "header": "AML_Review_Date__c",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Risk_Weighted_Assets__c",
+     "header": "Risk_Weighted_Assets__c",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Tax_ID__c",
+     "header": "Tax_ID__c",
+     "kind": "FIELD"
+    },
+    {
+     "field": "PersonEmail",
+     "header": "PersonEmail",
+     "kind": "FIELD"
+    },
+    {
+     "field": "PersonMobilePhone",
+     "header": "PersonMobilePhone",
+     "kind": "FIELD"
+    },
+    {
+     "field": "PersonBirthdate",
+     "header": "PersonBirthdate",
+     "kind": "FIELD"
+    },
+    {
+     "field": "BillingStreet",
+     "header": "BillingStreet",
+     "kind": "FIELD"
+    },
+    {
+     "field": "BillingCity",
+     "header": "BillingCity",
+     "kind": "FIELD"
+    },
+    {
+     "field": "BillingStateCode",
+     "header": "BillingStateCode",
+     "kind": "FIELD"
+    },
+    {
+     "field": "BillingPostalCode",
+     "header": "BillingPostalCode",
+     "kind": "FIELD"
+    },
+    {
+     "field": "BillingCountryCode",
+     "header": "BillingCountryCode",
+     "kind": "FIELD"
+    },
+    {
+     "field": "PersonMailingStreet",
+     "header": "PersonMailingStreet",
+     "kind": "FIELD"
+    },
+    {
+     "field": "PersonMailingCity",
+     "header": "PersonMailingCity",
+     "kind": "FIELD"
+    },
+    {
+     "field": "PersonMailingStateCode",
+     "header": "PersonMailingStateCode",
+     "kind": "FIELD"
+    },
+    {
+     "field": "PersonMailingPostalCode",
+     "header": "PersonMailingPostalCode",
+     "kind": "FIELD"
+    },
+    {
+     "field": "PersonMailingCountryCode",
+     "header": "PersonMailingCountryCode",
+     "kind": "FIELD"
+    }
+   ],
+   "n": 2,
+   "name": "S02_Account_insert",
+   "object": "Account",
+   "op": "insert",
+   "owner_field": "Seed_Owner_Username__c",
+   "resources": [
+    "SEED_02"
+   ],
+   "rows": 2200
+  },
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "RecordTypeId",
+     "header": "RecordType.DeveloperName",
+     "kind": "RECORDTYPE"
+    },
+    {
+     "field": "Name",
+     "header": "Name",
+     "kind": "FIELD"
+    },
+    {
+     "field": "PersonEmail",
+     "header": "PersonEmail",
+     "kind": "FIELD"
+    },
+    {
+     "field": "ParentId",
+     "header": "Parent.Name",
+     "key_field": "Name",
+     "kind": "LOOKUP",
+     "rel": "Parent",
+     "self_ref": true,
+     "target": "Account"
+    }
+   ],
+   "key_headers": [
+    "RecordType.DeveloperName",
+    "Name",
+    "PersonEmail"
+   ],
+   "n": 3,
+   "name": "S03_Account_update",
+   "object": "Account",
+   "op": "update",
+   "resources": [
+    "SEED_03"
+   ],
+   "rows": 80
+  },
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "LastName",
+     "header": "LastName",
+     "kind": "FIELD"
+    },
+    {
+     "field": "FirstName",
+     "header": "FirstName",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Salutation",
+     "header": "Salutation",
+     "kind": "FIELD"
+    },
+    {
+     "field": "AccountId",
+     "header": "Account.Name",
+     "key_field": "Name",
+     "kind": "LOOKUP",
+     "rel": "Account",
+     "target": "Account"
+    },
+    {
+     "field": "Title",
+     "header": "Title",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Email",
+     "header": "Email",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Phone",
+     "header": "Phone",
+     "kind": "FIELD"
+    },
+    {
+     "field": "MobilePhone",
+     "header": "MobilePhone",
+     "kind": "FIELD"
+    },
+    {
+     "field": "OtherPhone",
+     "header": "OtherPhone",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Secondary_Email__c",
+     "header": "Secondary_Email__c",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Birthdate",
+     "header": "Birthdate",
+     "kind": "FIELD"
+    },
+    {
+     "field": "LeadSource",
+     "header": "LeadSource",
+     "kind": "FIELD"
+    },
+    {
+     "field": "OwnerId",
+     "header": "Owner.Username",
+     "kind": "OWNER"
+    },
+    {
+     "field": "MailingStreet",
+     "header": "MailingStreet",
+     "kind": "FIELD"
+    },
+    {
+     "field": "MailingCity",
+     "header": "MailingCity",
+     "kind": "FIELD"
+    },
+    {
+     "field": "MailingStateCode",
+     "header": "MailingStateCode",
+     "kind": "FIELD"
+    },
+    {
+     "field": "MailingPostalCode",
+     "header": "MailingPostalCode",
+     "kind": "FIELD"
+    },
+    {
+     "field": "MailingCountryCode",
+     "header": "MailingCountryCode",
+     "kind": "FIELD"
+    }
+   ],
+   "n": 4,
+   "name": "S04_Contact_insert",
+   "object": "Contact",
+   "op": "insert",
+   "owner_field": "Seed_Owner_Username__c",
+   "resources": [
+    "SEED_04"
+   ],
+   "rows": 1800
+  },
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "AccountId",
+     "header": "Account.Name",
+     "key_field": "Name",
+     "kind": "LOOKUP",
+     "rel": "Account",
+     "target": "Account"
+    },
+    {
+     "field": "ContactId",
+     "header": "Contact.Email",
+     "key_field": "Email",
+     "kind": "LOOKUP",
+     "rel": "Contact",
+     "target": "Contact"
+    },
+    {
+     "field": "Roles",
+     "header": "Roles",
+     "kind": "FIELD"
+    },
+    {
+     "field": "IsActive",
+     "header": "IsActive",
+     "kind": "FIELD"
+    },
+    {
+     "field": "StartDate",
+     "header": "StartDate",
+     "kind": "FIELD"
+    },
+    {
+     "field": "EndDate",
+     "header": "EndDate",
+     "kind": "FIELD"
+    }
+   ],
+   "n": 5,
+   "name": "S05_AccountContactRelation_insert",
+   "object": "AccountContactRelation",
+   "op": "insert",
+   "resources": [
+    "SEED_05"
+   ],
+   "rows": 800
+  },
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "LastName",
+     "header": "LastName",
+     "kind": "FIELD"
+    },
+    {
+     "field": "FirstName",
+     "header": "FirstName",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Salutation",
+     "header": "Salutation",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Company",
+     "header": "Company",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Title",
+     "header": "Title",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Email",
+     "header": "Email",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Phone",
+     "header": "Phone",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Status",
+     "header": "Status",
+     "kind": "FIELD"
+    },
+    {
+     "field": "LeadSource",
+     "header": "LeadSource",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Industry",
+     "header": "Industry",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Rating",
+     "header": "Rating",
+     "kind": "FIELD"
+    },
+    {
+     "field": "OwnerId",
+     "header": "Owner.Username",
+     "kind": "OWNER"
+    },
+    {
+     "field": "Street",
+     "header": "Street",
+     "kind": "FIELD"
+    },
+    {
+     "field": "City",
+     "header": "City",
+     "kind": "FIELD"
+    },
+    {
+     "field": "StateCode",
+     "header": "StateCode",
+     "kind": "FIELD"
+    },
+    {
+     "field": "PostalCode",
+     "header": "PostalCode",
+     "kind": "FIELD"
+    },
+    {
+     "field": "CountryCode",
+     "header": "CountryCode",
+     "kind": "FIELD"
+    }
+   ],
+   "n": 6,
+   "name": "S06_Lead_insert",
+   "object": "Lead",
+   "op": "insert",
+   "owner_field": "Seed_Owner_Username__c",
+   "resources": [
+    "SEED_06"
+   ],
+   "rows": 900
+  },
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "FinancialAccountNumber",
+     "header": "FinancialAccountNumber",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Name",
+     "header": "Name",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Type",
+     "header": "Type",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Status",
+     "header": "Status",
+     "kind": "FIELD"
+    },
+    {
+     "field": "ProductId",
+     "header": "Product.ProductCode",
+     "key_field": "ProductCode",
+     "kind": "LOOKUP",
+     "rel": "Product",
+     "target": "Product2"
+    },
+    {
+     "field": "OpeningDate",
+     "header": "OpeningDate",
+     "kind": "FIELD"
+    },
+    {
+     "field": "ClosingDate",
+     "header": "ClosingDate",
+     "kind": "FIELD"
+    },
+    {
+     "field": "MaturityDate",
+     "header": "MaturityDate",
+     "kind": "FIELD"
+    },
+    {
+     "field": "InterestRate",
+     "header": "InterestRate",
+     "kind": "FIELD"
+    },
+    {
+     "field": "InterestType",
+     "header": "InterestType",
+     "kind": "FIELD"
+    },
+    {
+     "field": "PrincipalAmount",
+     "header": "PrincipalAmount",
+     "kind": "FIELD"
+    },
+    {
+     "field": "CreditLimit",
+     "header": "CreditLimit",
+     "kind": "FIELD"
+    },
+    {
+     "field": "TotalOutstandingAmount",
+     "header": "TotalOutstandingAmount",
+     "kind": "FIELD"
+    },
+    {
+     "field": "SourceSystemIdentifier",
+     "header": "SourceSystemIdentifier",
+     "kind": "FIELD"
+    },
+    {
+     "field": "OwnerId",
+     "header": "Owner.Username",
+     "kind": "OWNER"
+    }
+   ],
+   "n": 7,
+   "name": "S07_FinancialAccount_insert",
+   "object": "FinancialAccount",
+   "op": "insert",
+   "owner_field": "Seed_Owner_Username__c",
+   "resources": [
+    "SEED_07"
+   ],
+   "rows": 4160
+  },
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "FinancialAccountNumber",
+     "header": "FinancialAccountNumber",
+     "kind": "FIELD"
+    },
+    {
+     "field": "RelatedFinancialAccountId",
+     "header": "RelatedFinancialAccount.FinancialAccountNumber",
+     "key_field": "FinancialAccountNumber",
+     "kind": "LOOKUP",
+     "rel": "RelatedFinancialAccount",
+     "self_ref": true,
+     "target": "FinancialAccount"
+    }
+   ],
+   "key_headers": [
+    "FinancialAccountNumber"
+   ],
+   "n": 8,
+   "name": "S08_FinancialAccount_update",
+   "object": "FinancialAccount",
+   "op": "update",
+   "resources": [
+    "SEED_08"
+   ],
+   "rows": 39
+  },
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "FinancialAccountId",
+     "header": "FinancialAccount.FinancialAccountNumber",
+     "key_field": "FinancialAccountNumber",
+     "kind": "LOOKUP",
+     "rel": "FinancialAccount",
+     "target": "FinancialAccount"
+    },
+    {
+     "field": "AccountId",
+     "header": "Account.Name",
+     "key_field": "Name",
+     "kind": "LOOKUP",
+     "rel": "Account",
+     "target": "Account"
+    },
+    {
+     "field": "AccountId",
+     "header": "Account.PersonEmail",
+     "key_field": "PersonEmail",
+     "kind": "LOOKUP",
+     "rel": "Account",
+     "target": "Account"
+    },
+    {
+     "field": "ContactId",
+     "header": "Contact.Email",
+     "key_field": "Email",
+     "kind": "LOOKUP",
+     "rel": "Contact",
+     "target": "Contact"
+    },
+    {
+     "field": "Role",
+     "header": "Role",
+     "kind": "FIELD"
+    },
+    {
+     "field": "RoleStartDate",
+     "header": "RoleStartDate",
+     "kind": "FIELD"
+    },
+    {
+     "field": "RoleEndDate",
+     "header": "RoleEndDate",
+     "kind": "FIELD"
+    }
+   ],
+   "n": 9,
+   "name": "S09_FinancialAccountParty_insert",
+   "object": "FinancialAccountParty",
+   "op": "insert",
+   "resources": [
+    "SEED_09"
+   ],
+   "rows": 4652
+  },
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "Name",
+     "header": "Name",
+     "kind": "FIELD"
+    },
+    {
+     "field": "AccountId",
+     "header": "Account.Name",
+     "key_field": "Name",
+     "kind": "LOOKUP",
+     "rel": "Account",
+     "target": "Account"
+    },
+    {
+     "field": "AccountId",
+     "header": "Account.PersonEmail",
+     "key_field": "PersonEmail",
+     "kind": "LOOKUP",
+     "rel": "Account",
+     "target": "Account"
+    },
+    {
+     "field": "ContactId",
+     "header": "Contact.Email",
+     "key_field": "Email",
+     "kind": "LOOKUP",
+     "rel": "Contact",
+     "target": "Contact"
+    },
+    {
+     "field": "StageName",
+     "header": "StageName",
+     "kind": "FIELD"
+    },
+    {
+     "field": "CloseDate",
+     "header": "CloseDate",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Amount",
+     "header": "Amount",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Probability",
+     "header": "Probability",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Type",
+     "header": "Type",
+     "kind": "FIELD"
+    },
+    {
+     "field": "LeadSource",
+     "header": "LeadSource",
+     "kind": "FIELD"
+    },
+    {
+     "field": "NextStep",
+     "header": "NextStep",
+     "kind": "FIELD"
+    },
+    {
+     "field": "OwnerId",
+     "header": "Owner.Username",
+     "kind": "OWNER"
+    }
+   ],
+   "n": 10,
+   "name": "S10_Opportunity_insert",
+   "object": "Opportunity",
+   "op": "insert",
+   "owner_field": "Seed_Owner_Username__c",
+   "resources": [
+    "SEED_10"
+   ],
+   "rows": 1200
+  },
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "Subject",
+     "header": "Subject",
+     "kind": "FIELD"
+    },
+    {
+     "field": "AccountId",
+     "header": "Account.Name",
+     "key_field": "Name",
+     "kind": "LOOKUP",
+     "rel": "Account",
+     "target": "Account"
+    },
+    {
+     "field": "AccountId",
+     "header": "Account.PersonEmail",
+     "key_field": "PersonEmail",
+     "kind": "LOOKUP",
+     "rel": "Account",
+     "target": "Account"
+    },
+    {
+     "field": "ContactId",
+     "header": "Contact.Email",
+     "key_field": "Email",
+     "kind": "LOOKUP",
+     "rel": "Contact",
+     "target": "Contact"
+    },
+    {
+     "field": "SourceId",
+     "header": "Source.Type",
+     "kind": "POLY_TYPE",
+     "rel": "Source"
+    },
+    {
+     "field": "SourceId",
+     "header": "Source.Key",
+     "kind": "POLY_KEY",
+     "rel": "Source"
+    },
+    {
+     "field": "Description",
+     "header": "Description",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Status",
+     "header": "Status",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Priority",
+     "header": "Priority",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Origin",
+     "header": "Origin",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Type",
+     "header": "Type",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Reason",
+     "header": "Reason",
+     "kind": "FIELD"
+    },
+    {
+     "field": "OwnerId",
+     "header": "Owner.Username",
+     "kind": "OWNER"
+    },
+    {
+     "field": "CreatedDate",
+     "header": "CreatedDate",
+     "kind": "AUDIT"
+    },
+    {
+     "field": "ClosedDate",
+     "header": "ClosedDate",
+     "kind": "AUDIT"
+    }
+   ],
+   "n": 11,
+   "name": "S11_Case_insert",
+   "object": "Case",
+   "op": "insert",
+   "owner_field": "Seed_Owner_Username__c",
+   "resources": [
+    "SEED_11"
+   ],
+   "rows": 1500
+  },
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "Subject",
+     "header": "Subject",
+     "kind": "FIELD"
+    },
+    {
+     "field": "ParentId",
+     "header": "Parent.Subject",
+     "key_field": "Subject",
+     "kind": "LOOKUP",
+     "rel": "Parent",
+     "self_ref": true,
+     "target": "Case"
+    }
+   ],
+   "key_headers": [
+    "Subject"
+   ],
+   "n": 12,
+   "name": "S12_Case_update",
+   "object": "Case",
+   "op": "update",
+   "resources": [
+    "SEED_12"
+   ],
+   "rows": 33
+  },
+  {
+   "batch_size": 200,
+   "columns": [
+    {
+     "field": "Subject",
+     "header": "Subject",
+     "kind": "FIELD"
+    },
+    {
+     "field": "WhoId",
+     "header": "Who.Type",
+     "kind": "POLY_TYPE",
+     "rel": "Who"
+    },
+    {
+     "field": "WhoId",
+     "header": "Who.Key",
+     "kind": "POLY_KEY",
+     "rel": "Who"
+    },
+    {
+     "field": "WhatId",
+     "header": "What.Type",
+     "kind": "POLY_TYPE",
+     "rel": "What"
+    },
+    {
+     "field": "WhatId",
+     "header": "What.Key",
+     "kind": "POLY_KEY",
+     "rel": "What"
+    },
+    {
+     "field": "ActivityDate",
+     "header": "ActivityDate",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Status",
+     "header": "Status",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Priority",
+     "header": "Priority",
+     "kind": "FIELD"
+    },
+    {
+     "field": "Description",
+     "header": "Description",
+     "kind": "FIELD"
+    },
+    {
+     "field": "OwnerId",
+     "header": "Owner.Username",
+     "kind": "OWNER"
+    },
+    {
+     "field": "Legacy_Owner_Name__c",
+     "header": "Legacy_Owner_Name__c",
+     "kind": "FIELD"
+    },
+    {
+     "field": "CreatedDate",
+     "header": "CreatedDate",
+     "kind": "AUDIT"
+    }
+   ],
+   "n": 13,
+   "name": "S13_Task_insert",
+   "object": "Task",
+   "op": "insert",
+   "owner_field": "Seed_Owner_Username__c",
+   "resources": [
+    "SEED_13"
+   ],
+   "rows": 3300
+  }
+ ]
+}
