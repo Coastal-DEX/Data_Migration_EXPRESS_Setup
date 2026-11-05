@@ -99,6 +99,42 @@ NEGATIVE = [
 ]
 
 
+def prerequisite_order_failures():
+    """Finding #101: section 1 must list prerequisites in dependency order. Synthetic plan, no client names."""
+    import build_setup_meta as M
+    req = {"contacts_to_multiple_accounts": True, "person_record_types": ["Account.PersonRt"],
+           "record_types": {"Account": ["BizRt", "PersonRt"], "Asset": ["AssetRt"]},
+           "state_country_fields": ["Account.BillingStateCode"], "audit_fields": {"Case": ["CreatedDate"]}}
+    client = {"prerequisites": [{"setting": "Pack One", "path": "Setup > One", "irreversible": True},
+                                {"setting": "Pack Two", "path": "Setup > Two", "irreversible": False}]}
+    lines = M.prerequisite_lines(client, req)
+    order = ["Pack One", "Pack Two", "Contacts to Multiple Accounts", "`Account` record types `BizRt`",
+             "`Asset` record types `AssetRt`", "Enable Person Accounts", "person record type `PersonRt`",
+             "State and Country", "Set Audit Fields"]
+    out = []
+    if len(lines) != len(order):
+        out.append(f"prerequisite count {len(lines)} != {len(order)}: {lines}")
+    for i, (line, want) in enumerate(zip(lines, order), start=1):
+        if want not in line:
+            out.append(f"prerequisite {i} should name {want!r}; got {line!r}")
+    if "Irreversible" not in lines[0] or "Irreversible" in lines[1]:
+        out.append("irreversible flag not rendered per item")
+    if "business account default to `BizRt`" not in lines[6]:
+        out.append("person profile step does not name the business default")
+    for bad, expect in ([{"setting": "x"}, "exactly the keys"],
+                        [{"setting": " ", "path": "p", "irreversible": False}, "non-blank"],
+                        [{"setting": "x", "path": "p", "irreversible": "yes"}, "true or false"]):
+        try:
+            M.client_prerequisites({"prerequisites": [bad]})
+            out.append(f"malformed prerequisite accepted: {bad}")
+        except C.ContractError as e:
+            if expect not in " ".join(e.errors):
+                out.append(f"malformed prerequisite {bad}: expected {expect!r}, got {e.errors}")
+    if not out:
+        print("  prerequisite order OK: 9 lines in dependency order, 3 malformed inputs rejected")
+    return out
+
+
 def main():
     update = "--update" in sys.argv
     fails = []
@@ -148,6 +184,8 @@ def main():
                 fails.append(f"negative '{label}': rc={rc}, expected {expect!r} in output; got: {log.strip()[-300:]}")
             else:
                 print(f"  negative OK: {label}")
+    # 6. prerequisite order (#101): a person record type plan with every requirement on
+    fails.extend(prerequisite_order_failures())
     # 5. Apex lint over the golden tree (reserved identifiers, balance). Not a compiler.
     import glob
     apex = (glob.glob(f"{GOLDEN}/force-app/main/default/classes/*.cls")

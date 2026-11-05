@@ -438,21 +438,89 @@ def render_enforcement(w1, auto, out, written):
 
 
 # ---------------------------------------------------------------- README (spec 9)
+IRREVERSIBLE = " **Irreversible:** it cannot be turned off once enabled."
+
+
+def client_prerequisites(client):
+    """Org settings named by the client inputs (client.json `prerequisites`, finding #101).
+
+    Each item is {"setting": text, "path": text, "irreversible": bool}. A setting a stock
+    org lacks for this client (for example a cloud's standard objects) comes from here,
+    never from a literal in the builders (done-test T2). Malformed items fail the build.
+    """
+    items = client.get("prerequisites", [])
+    if not isinstance(items, list):
+        raise C.ContractError(["[client.json] prerequisites must be a list"])
+    errs = []
+    for i, p in enumerate(items, start=1):
+        if not isinstance(p, dict) or set(p) != {"setting", "path", "irreversible"}:
+            errs.append(f"[client.json] prerequisites[{i}] must have exactly the keys setting, path, irreversible")
+            continue
+        for k in ("setting", "path"):
+            if not isinstance(p[k], str) or not p[k].strip():
+                errs.append(f"[client.json] prerequisites[{i}].{k} must be non-blank text")
+        if not isinstance(p["irreversible"], bool):
+            errs.append(f"[client.json] prerequisites[{i}].irreversible must be true or false")
+    if errs:
+        raise C.ContractError(errs)
+    return items
+
+
+def prerequisite_lines(client, req):
+    """README section 1 prerequisites in dependency order (finding #101).
+
+    1. client-input settings, in the order client.json lists them;
+    2. Contacts to Multiple Accounts;
+    3. record types, with a business record type on any object that will carry a person record type;
+    4. Person Accounts (needs step 3);
+    5. person record types on the seeding user's profile (needs step 4);
+    6. State and Country/Territory Picklists;
+    7. Set Audit Fields.
+    """
+    pre = []
+    for p in client_prerequisites(client):
+        pre.append(f"Turn on {p['setting']} ({p['path']}).{IRREVERSIBLE if p['irreversible'] else ''}")
+    if req["contacts_to_multiple_accounts"]:
+        pre.append("Turn on Contacts to Multiple Accounts (Setup > Account Settings).")
+    person = {}
+    for x in req["person_record_types"]:
+        o, rt = x.split(".", 1)
+        person.setdefault(o, []).append(rt)
+    business_default = {}
+    for o in sorted(set(req["record_types"]) | set(person)):
+        biz = [r for r in req["record_types"].get(o, []) if r not in person.get(o, [])]
+        if o in person:
+            if biz:
+                business_default[o] = biz[0]
+                pre.append(f"Create the `{o}` record types " + ", ".join(f"`{r}`" for r in biz)
+                           + f", active and available to the seeding user's profile, with `{biz[0]}` as its "
+                           f"default. Person Accounts cannot be enabled until a business record type exists.")
+            else:
+                pre.append(f"Create at least one active business `{o}` record type and make it the default on "
+                           "the seeding user's profile. Person Accounts cannot be enabled until one exists.")
+        elif biz:
+            pre.append(f"Create the `{o}` record types " + ", ".join(f"`{r}`" for r in biz)
+                       + ", active and available to the seeding user's profile.")
+    if person:
+        pre.append("Enable Person Accounts (Setup > Person Accounts; acknowledge the org impacts first)." + IRREVERSIBLE)
+        for o, rts in sorted(person.items()):
+            biz = business_default.get(o)
+            pre.append(f"Add the person record type " + ", ".join(f"`{r}`" for r in rts)
+                       + f" to the seeding user's profile (Setup > Profiles > the profile > Record Types). "
+                       f"Set the person account default to `{rts[0]}`"
+                       + (f" and the business account default to `{biz}`." if biz else "."))
+    if req["state_country_fields"]:
+        pre.append("Enable State and Country/Territory Picklists (Setup > State and Country/Territory Picklists).")
+    if req["audit_fields"]:
+        pre.append("Turn on Set Audit Fields upon Record Creation (Setup > User Interface). Audit columns: "
+                   + ", ".join(f"`{o}.{f}`" for o, fs in sorted(req["audit_fields"].items()) for f in fs))
+    return pre
+
+
 def readme(client, plan, rendered, skipped):
     req = plan["requires"]
     code = client["code"]
-    pre = []
-    if req["person_record_types"]:
-        pre.append("Person Accounts enabled (record types " + ", ".join(f"`{x}`" for x in req["person_record_types"]) + ")")
-    if req["state_country_fields"]:
-        pre.append("State and Country/Territory Picklists enabled")
-    if req["contacts_to_multiple_accounts"]:
-        pre.append("Contacts to Multiple Accounts enabled")
-    if req["audit_fields"]:
-        pre.append("Set Audit Fields upon Record Creation enabled (Setup > User Interface). Audit columns: "
-                   + ", ".join(f"`{o}.{f}`" for o, fs in sorted(req["audit_fields"].items()) for f in fs))
-    for o, rts in sorted(req["record_types"].items()):
-        pre.append(f"`{o}` record types active and available: " + ", ".join(f"`{r}`" for r in rts))
+    pre = prerequisite_lines(client, req)
     census = "\n".join(f"| {r['object']}{' / ' + r['record_type'] if r.get('record_type') else ''} | "
                        f"{r['expected']:,} | {r.get('filter') or 'n/a'} |" for r in plan["census"])
     steps = "\n".join(f"| {s['n']} | {s['object']} | {s['op']} | {s['rows']:,} | `{', '.join(s['resources'])}` |"
@@ -474,7 +542,7 @@ cd clients/{code}
 
 The repo root holds a different client. A deploy from the root does not reach this one.
 
-These org settings are prerequisites. They are org settings, not metadata, so this repo cannot deploy them:
+These org settings are prerequisites. They are org settings, not metadata, so this repo cannot deploy them. Do them in this order: each one can depend on the one before it.
 
 {chr(10).join(f'{i}. {p}' for i, p in enumerate(pre, start=1)) if pre else 'None.'}
 
@@ -543,6 +611,7 @@ def main(argv=None):
         C.resource_texts(plan)       # fills step resource names for the README
         if not re.match(r"^[A-Za-z][A-Za-z0-9]*$", client["code"]):
             raise C.ContractError([f"[client.json] code {client['code']!r} must be alphanumeric"])
+        client_prerequisites(client)     # fail before any file is written (#101)
         write(out, "sfdx-project.json", json.dumps({
             "packageDirectories": [{"path": "force-app", "default": True}],
             "name": f"EXPRESS_Setup_{client['code']}",

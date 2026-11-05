@@ -128,7 +128,9 @@ def main():
         json.dump(DESCRIBE, fh, indent=1, sort_keys=True)
     with open(os.path.join(a.out, "client.json"), "w") as fh:
         json.dump({"code": "TOY", "display_name": "Toy Third Client (test fixture)", "seed": 1,
-                   "target_platform": "any org", "source_database": "n/a", "batch_size": 200}, fh, indent=1)
+                   "target_platform": "any org", "source_database": "n/a", "batch_size": 200,
+                   "prerequisites": [{"setting": "Toy Feature Pack", "path": "Setup > Toy Settings",
+                                      "irreversible": True}]}, fh, indent=1)
     print("toy inputs written to", a.out)
 
 

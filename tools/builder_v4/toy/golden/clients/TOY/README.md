@@ -13,11 +13,12 @@ cd clients/TOY
 
 The repo root holds a different client. A deploy from the root does not reach this one.
 
-These org settings are prerequisites. They are org settings, not metadata, so this repo cannot deploy them:
+These org settings are prerequisites. They are org settings, not metadata, so this repo cannot deploy them. Do them in this order: each one can depend on the one before it.
 
-1. State and Country/Territory Picklists enabled
-2. Set Audit Fields upon Record Creation enabled (Setup > User Interface). Audit columns: `Case.CreatedDate`
-3. `Account` record types active and available: `Branch`, `Org_Unit`
+1. Turn on Toy Feature Pack (Setup > Toy Settings). **Irreversible:** it cannot be turned off once enabled.
+2. Create the `Account` record types `Branch`, `Org_Unit`, active and available to the seeding user's profile.
+3. Enable State and Country/Territory Picklists (Setup > State and Country/Territory Picklists).
+4. Turn on Set Audit Fields upon Record Creation (Setup > User Interface). Audit columns: `Case.CreatedDate`
 
 ## 2. Deploy and assign
 

@@ -13,13 +13,15 @@ cd clients/FINS
 
 The repo root holds a different client. A deploy from the root does not reach this one.
 
-These org settings are prerequisites. They are org settings, not metadata, so this repo cannot deploy them:
+These org settings are prerequisites. They are org settings, not metadata, so this repo cannot deploy them. Do them in this order: each one can depend on the one before it.
 
-1. Person Accounts enabled (record types `Account.PersonAccount`)
-2. State and Country/Territory Picklists enabled
-3. Contacts to Multiple Accounts enabled
-4. Set Audit Fields upon Record Creation enabled (Setup > User Interface). Audit columns: `Case.ClosedDate`, `Case.CreatedDate`, `Task.CreatedDate`
-5. `Account` record types active and available: `Business_Account`, `PersonAccount`
+1. Turn on Financial Account Management Standard Objects (Setup > Financial Account Settings). **Irreversible:** it cannot be turned off once enabled.
+2. Turn on Contacts to Multiple Accounts (Setup > Account Settings).
+3. Create the `Account` record types `Business_Account`, active and available to the seeding user's profile, with `Business_Account` as its default. Person Accounts cannot be enabled until a business record type exists.
+4. Enable Person Accounts (Setup > Person Accounts; acknowledge the org impacts first). **Irreversible:** it cannot be turned off once enabled.
+5. Add the person record type `PersonAccount` to the seeding user's profile (Setup > Profiles > the profile > Record Types). Set the person account default to `PersonAccount` and the business account default to `Business_Account`.
+6. Enable State and Country/Territory Picklists (Setup > State and Country/Territory Picklists).
+7. Turn on Set Audit Fields upon Record Creation (Setup > User Interface). Audit columns: `Case.ClosedDate`, `Case.CreatedDate`, `Task.CreatedDate`
 
 ## 2. Deploy and assign
 
