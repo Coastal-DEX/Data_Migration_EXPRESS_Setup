@@ -28,7 +28,7 @@ public without sharing class ExpressSeed {
         List<StaticResource> srs = [SELECT Body FROM StaticResource WHERE Name = :resourceName LIMIT 1];
         if (srs.isEmpty()) {
             throw new SetupException('SETUP INCOMPLETE: static resource ' + resourceName
-                + ' is missing. Deploy this client folder (cd clients/<Code>; sf project deploy start).');
+                + ' is missing. Redeploy this client with its Deploy button (see the README).');
         }
         return srs[0].Body.toString();
     }

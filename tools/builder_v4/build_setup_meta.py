@@ -29,6 +29,11 @@ NS = 'xmlns="http://soap.sforce.com/2006/04/metadata"'
 XML = '<?xml version="1.0" encoding="UTF-8"?>\n'
 FA = "force-app/main/default"
 PERMSET = "EXPRESS_Seed_Admin"
+# #102: learners deploy by the githubsfdeploy button, never the CLI. Each client deploys from its own
+# branch, deploy/<Code>, whose root sfdx-project.json points at clients/<Code>/force-app.
+DEPLOY_OWNER = "Coastal-DEX"
+DEPLOY_REPO = "Data_Migration_EXPRESS_Setup"
+PERMSET_LABEL = "EXPRESS Seed Admin"
 SEED_CLASSES = ["ExpressCsv", "ExpressSeed", "ExpressSeedBatch"]
 # Objects whose access comes from parent objects or user permissions, so a permission set
 # may not carry objectPermissions for them (platform rule).
@@ -534,13 +539,7 @@ Plan from File 1 content md5 `{plan['file1_content_md5']}`, contract v{plan['con
 
 ## 1. Before you deploy
 
-Work in this folder only. Every command below runs from `clients/{code}`:
-
-```
-cd clients/{code}
-```
-
-The repo root holds a different client. A deploy from the root does not reach this one.
+This client deploys from its own branch, `deploy/{code}`, with the button in section 2. You do not need the Salesforce CLI. The Deploy button on the repo's front page deploys a different client and does not reach this one.
 
 These org settings are prerequisites. They are org settings, not metadata, so this repo cannot deploy them. Do them in this order: each one can depend on the one before it.
 
@@ -548,12 +547,17 @@ These org settings are prerequisites. They are org settings, not metadata, so th
 
 ## 2. Deploy and assign
 
-```
-sf project deploy start --test-level RunLocalTests
-sf org assign permset --name {PERMSET}
-```
+1. Click the button. Log in to your org when asked. Check that the component list shows the `ExpressSeed` classes, then click Deploy.
+
+<a href="https://githubsfdeploy.herokuapp.com?owner={DEPLOY_OWNER}&repo={DEPLOY_REPO}&ref=deploy/{code}">
+  <img alt="Deploy to Salesforce" src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
+</a>
+
+2. Assign the permission set to your user: Setup > Permission Sets > **{PERMSET_LABEL}** > Manage Assignments > Add Assignment > your user > Assign.
 
 ## 3. Check, census, seed, census
+
+Run each script as Anonymous Apex: Developer Console (gear icon) > Debug > Open Execute Anonymous Window. Paste the script from this folder's `scripts/` on GitHub, then click Execute.
 
 1. Run `scripts/check-setup.apex` as Anonymous Apex. It prints `SETUP OK`, or throws `SETUP INCOMPLETE` / `ALREADY SEEDED` naming the first gap. Fix that gap and run it again.
 2. Run `scripts/census.apex` with `MODE = 'BEFORE'`. Copy the line it prints.
