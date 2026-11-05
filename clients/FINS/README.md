@@ -5,13 +5,7 @@ Plan from File 1 content md5 `232e4657f281195640c649a9cc32af15`, contract v1.0.1
 
 ## 1. Before you deploy
 
-Work in this folder only. Every command below runs from `clients/FINS`:
-
-```
-cd clients/FINS
-```
-
-The repo root holds a different client. A deploy from the root does not reach this one.
+This client deploys from its own branch, `deploy/FINS`, with the button in section 2. You do not need the Salesforce CLI. The Deploy button on the repo's front page deploys a different client and does not reach this one.
 
 These org settings are prerequisites. They are org settings, not metadata, so this repo cannot deploy them. Do them in this order: each one can depend on the one before it.
 
@@ -25,12 +19,17 @@ These org settings are prerequisites. They are org settings, not metadata, so th
 
 ## 2. Deploy and assign
 
-```
-sf project deploy start --test-level RunLocalTests
-sf org assign permset --name EXPRESS_Seed_Admin
-```
+1. Click the button. Log in to your org when asked. Check that the component list shows the `ExpressSeed` classes, then click Deploy.
+
+<a href="https://githubsfdeploy.herokuapp.com?owner=Coastal-DEX&repo=Data_Migration_EXPRESS_Setup&ref=deploy/FINS">
+  <img alt="Deploy to Salesforce" src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
+</a>
+
+2. Assign the permission set to your user: Setup > Permission Sets > **EXPRESS Seed Admin** > Manage Assignments > Add Assignment > your user > Assign.
 
 ## 3. Check, census, seed, census
+
+Run each script as Anonymous Apex: Developer Console (gear icon) > Debug > Open Execute Anonymous Window. Paste the script from this folder's `scripts/` on GitHub, then click Execute.
 
 1. Run `scripts/check-setup.apex` as Anonymous Apex. It prints `SETUP OK`, or throws `SETUP INCOMPLETE` / `ALREADY SEEDED` naming the first gap. Fix that gap and run it again.
 2. Run `scripts/census.apex` with `MODE = 'BEFORE'`. Copy the line it prints.
