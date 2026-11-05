@@ -45,7 +45,7 @@ into a window and execute it. You do not "call" a script file.
 3. Tick **Open Log**.
 4. Paste the code in. For a one-line command, just type it. For the census script, open it in
    your browser at the raw link below, select all, copy, paste:
-   [scripts/census.apex (raw)](https://raw.githubusercontent.com/ChristopherBruce-Coastal/NPC_Data_Migration_EXPRESS_Setup/main/scripts/census.apex)
+   [scripts/census.apex (raw)](https://raw.githubusercontent.com/Coastal-DEX/Data_Migration_EXPRESS_Setup/main/scripts/census.apex)
 5. Click **Execute**. In the log window that opens, check the **Debug Only**
    checkbox (top of the log) instead of scrolling through the raw log to find your
    output.
@@ -170,7 +170,7 @@ Complete these in order. Each step depends on the one before it.
 10. **Take the "before" count, seed, then check the deltas.** Three executions, in order.
 
     **10a. Before count.** Open the
-    [raw census script](https://raw.githubusercontent.com/ChristopherBruce-Coastal/NPC_Data_Migration_EXPRESS_Setup/main/scripts/census.apex),
+    [raw census script](https://raw.githubusercontent.com/Coastal-DEX/Data_Migration_EXPRESS_Setup/main/scripts/census.apex),
     select all, copy, paste into the Execute Anonymous window and Execute. Leave `MODE` set to
     `'BEFORE'`. It reads only and changes nothing.
 
@@ -226,7 +226,7 @@ Complete these in order. Each step depends on the one before it.
 
 ## Deploy
 
-<a href="https://githubsfdeploy.herokuapp.com?owner=ChristopherBruce-Coastal&repo=NPC_Data_Migration_EXPRESS_Setup&ref=main">
+<a href="https://githubsfdeploy.herokuapp.com?owner=Coastal-DEX&repo=Data_Migration_EXPRESS_Setup&ref=main">
   <img alt="Deploy to Salesforce" src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
 
