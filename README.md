@@ -40,6 +40,8 @@ Everything runs in the browser.
 The census script and the two loader commands are all **anonymous Apex**: you paste the code
 into a window and execute it. You do not "call" a script file.
 
+> **No Developer Console under the gear?** It is off by default in new orgs. An admin can turn it back on at Setup > Development > Web Console > Enable Developer Console, and the steps below then work as written. Or use Web Console: open Setup, then the gear menu > Web Console. Press Cmd+Shift+P (Ctrl+Shift+P on Windows), choose SFDX: Create Anonymous Apex Script, paste the script, right-click, and choose SFDX: Execute Anonymous Apex. The result arrives as the debug log.
+
 1. Click the **gear icon** (top right of Setup) > **Developer Console**. It opens in a new window.
 2. **Debug > Open Execute Anonymous Window.**
 3. Tick **Open Log**.
@@ -141,7 +143,7 @@ Complete these in order. Each step depends on the one before it.
 
    *New to the Developer Console?* Open it from the **gear icon** in the top-right of Salesforce
    Setup — click the gear, then **Developer Console**. It opens in a new window. (If you don't see
-   it under the gear, your user may need the "Author Apex" permission; the EXPRESS Training Data
+   it under the gear, it may be turned off in your org (see Running anonymous Apex above), or your user may need the "Author Apex" permission; the EXPRESS Training Data
    Admin permission set from step 8 covers this.)
 
    In the Developer Console, go to **Debug > Open Execute Anonymous Window**, tick **Open Log**,
