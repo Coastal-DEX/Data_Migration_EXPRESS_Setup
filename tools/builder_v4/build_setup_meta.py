@@ -557,7 +557,7 @@ These org settings are prerequisites. They are org settings, not metadata, so th
 
 ## 3. Check, census, seed, census
 
-Run each script as Anonymous Apex: Developer Console (gear icon) > Debug > Open Execute Anonymous Window. Paste the script from this folder's `scripts/` on GitHub, then click Execute.
+Run each script as Anonymous Apex in Web Console. Developer Console is off by default in new orgs. Open Setup, then the gear menu > Web Console. Press Cmd+Shift+P (Ctrl+Shift+P on Windows), choose SFDX: Create Anonymous Apex Script, paste the script from this folder's `scripts/` on GitHub, right-click, and choose SFDX: Execute Anonymous Apex. The result arrives as the debug log. An admin can turn Developer Console back on at Setup > Development > Web Console > Enable Developer Console.
 
 1. Run `scripts/check-setup.apex` as Anonymous Apex. It prints `SETUP OK`, or throws `SETUP INCOMPLETE` / `ALREADY SEEDED` naming the first gap. Fix that gap and run it again.
 2. Run `scripts/census.apex` with `MODE = 'BEFORE'`. Copy the line it prints.
